@@ -6,9 +6,9 @@ void ofxPlaneWarp::draw(ofTexture & texture)
 	mesh.draw();
 	texture.unbind();
 	if (isWarpMode) {
-		ofSetColor(0, 255, 0,127);
+		ofSetColor(0, 255, 0, 127);
 		for (auto i = 0; i < cornerPoints.size(); i++) {
-			ofDrawCircle(cornerPoints[i][0],cornerPoints[i][1],touchDistThreashold);
+			ofDrawCircle(cornerPoints[i][0], cornerPoints[i][1], touchDistThreashold);
 		}
 	}
 
@@ -71,10 +71,13 @@ void ofxPlaneWarp::warpMode(bool value)
 
 void ofxPlaneWarp::mouseDragged(int x, int y, int button)
 {
-	cornerPoints[selectedPointIndex][0] = x;
-	cornerPoints[selectedPointIndex][1] = y;
+	if (selectedPointIndex >= 0) {
+		cornerPoints[selectedPointIndex][0] = x;
+		cornerPoints[selectedPointIndex][1] = y;
 
-	update();
+		update();
+	}
+	
 }
 
 void ofxPlaneWarp::mousePressed(int x, int y, int button)
@@ -92,9 +95,16 @@ void ofxPlaneWarp::mousePressed(int x, int y, int button)
 void ofxPlaneWarp::mouseReleased(int x, int y, int button)
 {
 	update();
+	selectedPointIndex = -1;
 }
 
 void ofxPlaneWarp::drawWireframe()
 {
 	mesh.drawWireframe();
+	if (isWarpMode) {
+		ofSetColor(0, 255, 0, 127);
+		for (auto i = 0; i < cornerPoints.size(); i++) {
+			ofDrawCircle(cornerPoints[i][0], cornerPoints[i][1], touchDistThreashold);
+		}
+	}
 }

@@ -22,7 +22,7 @@ private:
 	vector<cv::Vec2f> baseCornerPoints;
 	vector<cv::Vec2f> basePoints;
 	vector<cv::Vec2f> cornerPoints;
-	
+	ofVec2f preMousePosition;
 	cv::Mat h;
 	bool isWarpMode;
 	int selectedPointIndex;

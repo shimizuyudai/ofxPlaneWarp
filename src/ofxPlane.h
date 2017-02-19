@@ -11,11 +11,10 @@ public:
 	ofVec2f getTopRight();
 	ofVec2f getBottomLeft();
 	ofVec2f getBottomRight();
-	vector<ofVec2f> getVertices();
+	vector<ofVec3f> getVertices();
 	ofMesh& getMesh();
 	void setVertices(vector<ofVec2f>& vertices);
 	void setVertex(int index,ofVec2f vertex);
-
 protected:
 
 	ofMesh mesh;

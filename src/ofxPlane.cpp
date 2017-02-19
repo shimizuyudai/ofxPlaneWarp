@@ -19,7 +19,7 @@ void ofxPlane::setup(float x, float y, float w, float h, int wSeg, int hSeg)
 		for (auto j = 0; j < wSeg; j++) {
 			auto vertex = ofVec2f(startX + (w / (float)(wSeg -1))*(float)(j), startY + (h / (float)(hSeg - 1))*(float)(i));
 			mesh.addVertex(vertex);
-			auto uv = ofVec2f((float)j / (float)wSeg, (float)i / (float)hSeg);
+			auto uv = ofVec2f((float)j / (float)(wSeg-1), (float)i / (float)(hSeg-1));
 			mesh.addTexCoord(uv);
 		}
 	}
@@ -51,17 +51,17 @@ ofVec2f ofxPlane::getTopRight()
 
 ofVec2f ofxPlane::getBottomLeft()
 {
-	return mesh.getVertex((widthSegment*heightSegment) - 1);
+	return mesh.getVertex(widthSegment*(heightSegment - 1));
 }
 
 ofVec2f ofxPlane::getBottomRight()
 {
-	return ofVec2f();
+	return mesh.getVertex((widthSegment*heightSegment) - 1);
 }
 
-vector<ofVec2f> ofxPlane::getVertices()
+vector<ofVec3f> ofxPlane::getVertices()
 {
-	return vector<ofVec2f>();
+	return this->mesh.getVertices();
 }
 
 ofMesh & ofxPlane::getMesh()

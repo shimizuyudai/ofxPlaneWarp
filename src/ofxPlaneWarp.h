@@ -14,9 +14,20 @@ public:
 	void mouseDragged(int x, int y, int button);
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
+	void setVertices(vector<ofVec2f>& vertices);
+	void setVertex(int index, ofVec2f vertex);
+	void setCornerPoints(vector<cv::Vec2f> points);
+	void setCornerPoint(int index,cv::Vec2f point);
+	ofVec2f getTopLeft();
+	ofVec2f getTopRight();
+	ofVec2f getBottomLeft();
+	ofVec2f getBottomRight();
+	vector<cv::Vec2f> getBaseCornerPoints();
+	vector<cv::Vec2f> getCornerPoints();
+	ofMesh& getMesh();
 
 private:
-
+	int widthSegment, heightSegment;
 	ofMesh mesh;
 	float touchDistThreashold = 10;
 	vector<cv::Vec2f> baseCornerPoints;
